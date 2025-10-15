@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <RestoreSuccess Condition=" '$(RestoreSuccess)' == '' ">True</RestoreSuccess>
+    <RestoreTool Condition=" '$(RestoreTool)' == '' ">NuGet</RestoreTool>
+    <ProjectAssetsFile Condition=" '$(ProjectAssetsFile)' == '' ">$(MSBuildThisFileDirectory)project.assets.json</ProjectAssetsFile>
+    <NuGetPackageRoot Condition=" '$(NuGetPackageRoot)' == '' ">$(UserProfile)\.nuget\packages\</NuGetPackageRoot>
+    <NuGetPackageFolders Condition=" '$(NuGetPackageFolders)' == '' ">C:\Users\huy09\.nuget\packages\;D:\Program Files\Components\Offline Packages;C:\Program Files (x86)\Microsoft Visual Studio\Shared\NuGetPackages</NuGetPackageFolders>
+    <NuGetProjectStyle Condition=" '$(NuGetProjectStyle)' == '' ">PackageReference</NuGetProjectStyle>
+    <NuGetToolVersion Condition=" '$(NuGetToolVersion)' == '' ">6.14.1</NuGetToolVersion>
+  </PropertyGroup>
+  <ItemGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <SourceRoot Include="C:\Users\huy09\.nuget\packages\" />
+    <SourceRoot Include="D:\Program Files\Components\Offline Packages\" />
+    <SourceRoot Include="C:\Program Files (x86)\Microsoft Visual Studio\Shared\NuGetPackages\" />
+  </ItemGroup>
+  <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <Import Project="D:\Program Files\Components\Offline Packages\devexpress.data.desktop\25.1.5\build\net8.0-windows\DevExpress.Data.Desktop.props" Condition="Exists('D:\Program Files\Components\Offline Packages\devexpress.data.desktop\25.1.5\build\net8.0-windows\DevExpress.Data.Desktop.props')" />
+    <Import Project="D:\Program Files\Components\Offline Packages\devexpress.diagram.core\25.1.5\build\net8.0-windows\DevExpress.Diagram.Core.props" Condition="Exists('D:\Program Files\Components\Offline Packages\devexpress.diagram.core\25.1.5\build\net8.0-windows\DevExpress.Diagram.Core.props')" />
+  </ImportGroup>
+  <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <PkgDevExpress_Data Condition=" '$(PkgDevExpress_Data)' == '' ">D:\Program Files\Components\Offline Packages\devexpress.data\25.1.5</PkgDevExpress_Data>
+    <PkgDevExpress_Xpo Condition=" '$(PkgDevExpress_Xpo)' == '' ">D:\Program Files\Components\Offline Packages\devexpress.xpo\25.1.5</PkgDevExpress_Xpo>
+    <PkgDevExpress_Utils Condition=" '$(PkgDevExpress_Utils)' == '' ">D:\Program Files\Components\Offline Packages\devexpress.utils\25.1.5</PkgDevExpress_Utils>
+    <PkgDevExpress_Win_Navigation Condition=" '$(PkgDevExpress_Win_Navigation)' == '' ">D:\Program Files\Components\Offline Packages\devexpress.win.navigation\25.1.5</PkgDevExpress_Win_Navigation>
+    <PkgDevExpress_Win_TreeList Condition=" '$(PkgDevExpress_Win_TreeList)' == '' ">D:\Program Files\Components\Offline Packages\devexpress.win.treelist\25.1.5</PkgDevExpress_Win_TreeList>
+    <PkgDevExpress_Win_Printing Condition=" '$(PkgDevExpress_Win_Printing)' == '' ">D:\Program Files\Components\Offline Packages\devexpress.win.printing\25.1.5</PkgDevExpress_Win_Printing>
+    <PkgDevExpress_Win_VerticalGrid Condition=" '$(PkgDevExpress_Win_VerticalGrid)' == '' ">D:\Program Files\Components\Offline Packages\devexpress.win.verticalgrid\25.1.5</PkgDevExpress_Win_VerticalGrid>
+    <PkgDevExpress_Win_TreeMap Condition=" '$(PkgDevExpress_Win_TreeMap)' == '' ">D:\Program Files\Components\Offline Packages\devexpress.win.treemap\25.1.5</PkgDevExpress_Win_TreeMap>
+    <PkgDevExpress_Win_Grid Condition=" '$(PkgDevExpress_Win_Grid)' == '' ">D:\Program Files\Components\Offline Packages\devexpress.win.grid\25.1.5</PkgDevExpress_Win_Grid>
+    <PkgDevExpress_Win_RichEdit Condition=" '$(PkgDevExpress_Win_RichEdit)' == '' ">D:\Program Files\Components\Offline Packages\devexpress.win.richedit\25.1.5</PkgDevExpress_Win_RichEdit>
+    <PkgDevExpress_Win_PivotGrid Condition=" '$(PkgDevExpress_Win_PivotGrid)' == '' ">D:\Program Files\Components\Offline Packages\devexpress.win.pivotgrid\25.1.5</PkgDevExpress_Win_PivotGrid>
+    <PkgDevExpress_Win_Diagram Condition=" '$(PkgDevExpress_Win_Diagram)' == '' ">D:\Program Files\Components\Offline Packages\devexpress.win.diagram\25.1.5</PkgDevExpress_Win_Diagram>
+    <PkgDevExpress_Win Condition=" '$(PkgDevExpress_Win)' == '' ">D:\Program Files\Components\Offline Packages\devexpress.win\25.1.5</PkgDevExpress_Win>
+    <PkgDevExpress_DataAccess Condition=" '$(PkgDevExpress_DataAccess)' == '' ">D:\Program Files\Components\Offline Packages\devexpress.dataaccess\25.1.5</PkgDevExpress_DataAccess>
+    <PkgDevExpress_DataAccess_UI Condition=" '$(PkgDevExpress_DataAccess_UI)' == '' ">D:\Program Files\Components\Offline Packages\devexpress.dataaccess.ui\25.1.5</PkgDevExpress_DataAccess_UI>
+    <PkgDevExpress_Win_Spreadsheet Condition=" '$(PkgDevExpress_Win_Spreadsheet)' == '' ">D:\Program Files\Components\Offline Packages\devexpress.win.spreadsheet\25.1.5</PkgDevExpress_Win_Spreadsheet>
+    <PkgDevExpress_Win_SpellChecker Condition=" '$(PkgDevExpress_Win_SpellChecker)' == '' ">D:\Program Files\Components\Offline Packages\devexpress.win.spellchecker\25.1.5</PkgDevExpress_Win_SpellChecker>
+    <PkgDevExpress_Win_Scheduler Condition=" '$(PkgDevExpress_Win_Scheduler)' == '' ">D:\Program Files\Components\Offline Packages\devexpress.win.scheduler\25.1.5</PkgDevExpress_Win_Scheduler>
+    <PkgDevExpress_Win_SchedulerReporting Condition=" '$(PkgDevExpress_Win_SchedulerReporting)' == '' ">D:\Program Files\Components\Offline Packages\devexpress.win.schedulerreporting\25.1.5</PkgDevExpress_Win_SchedulerReporting>
+    <PkgDevExpress_Win_Charts Condition=" '$(PkgDevExpress_Win_Charts)' == '' ">D:\Program Files\Components\Offline Packages\devexpress.win.charts\25.1.5</PkgDevExpress_Win_Charts>
+    <PkgDevExpress_Win_Reporting Condition=" '$(PkgDevExpress_Win_Reporting)' == '' ">D:\Program Files\Components\Offline Packages\devexpress.win.reporting\25.1.5</PkgDevExpress_Win_Reporting>
+    <PkgDevExpress_Win_SchedulerExtensions Condition=" '$(PkgDevExpress_Win_SchedulerExtensions)' == '' ">D:\Program Files\Components\Offline Packages\devexpress.win.schedulerextensions\25.1.5</PkgDevExpress_Win_SchedulerExtensions>
+    <PkgDevExpress_Win_PdfViewer Condition=" '$(PkgDevExpress_Win_PdfViewer)' == '' ">D:\Program Files\Components\Offline Packages\devexpress.win.pdfviewer\25.1.5</PkgDevExpress_Win_PdfViewer>
+    <PkgDevExpress_Win_Map Condition=" '$(PkgDevExpress_Win_Map)' == '' ">D:\Program Files\Components\Offline Packages\devexpress.win.map\25.1.5</PkgDevExpress_Win_Map>
+    <PkgDevExpress_Win_Gauges Condition=" '$(PkgDevExpress_Win_Gauges)' == '' ">D:\Program Files\Components\Offline Packages\devexpress.win.gauges\25.1.5</PkgDevExpress_Win_Gauges>
+    <PkgDevExpress_Win_Gantt Condition=" '$(PkgDevExpress_Win_Gantt)' == '' ">D:\Program Files\Components\Offline Packages\devexpress.win.gantt\25.1.5</PkgDevExpress_Win_Gantt>
+    <PkgDevExpress_Win_Dialogs Condition=" '$(PkgDevExpress_Win_Dialogs)' == '' ">D:\Program Files\Components\Offline Packages\devexpress.win.dialogs\25.1.5</PkgDevExpress_Win_Dialogs>
+  </PropertyGroup>
+</Project>
