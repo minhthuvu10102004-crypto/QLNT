@@ -148,6 +148,7 @@
             btnthuoc.LargeWidth = 100;
             btnthuoc.Name = "btnthuoc";
             btnthuoc.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            btnthuoc.ItemClick += btnthuoc_ItemClick;
             // 
             // btnnhaphang
             // 
@@ -204,6 +205,7 @@
             btnbcdt.LargeWidth = 100;
             btnbcdt.Name = "btnbcdt";
             btnbcdt.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            btnbcdt.ItemClick += btnbcdt_ItemClick;
             // 
             // btnbctk
             // 
@@ -381,6 +383,7 @@
             btnimport.LargeWidth = 100;
             btnimport.Name = "btnimport";
             btnimport.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            btnimport.ItemClick += btnimport_ItemClick;
             // 
             // barButtonItem1
             // 
@@ -399,6 +402,7 @@
             barButtonItem1.LargeWidth = 100;
             barButtonItem1.Name = "barButtonItem1";
             barButtonItem1.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            barButtonItem1.ItemClick += barButtonItem1_ItemClick;
             // 
             // ribbonnghiepvu
             // 

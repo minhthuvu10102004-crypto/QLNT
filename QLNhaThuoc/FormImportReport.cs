@@ -8,7 +8,7 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
-namespace QLNT2
+namespace QLNhaThuoc
 {
     public class FormImportReport : Form
     {
@@ -84,7 +84,17 @@ namespace QLNT2
         BindingList<ImportRecord> _all = new();
         List<ImportRecord> _view = new();
 
-        private void InitializeComponent() { }
+        private void InitializeComponent()
+        {
+            SuspendLayout();
+            // 
+            // FormImportReport
+            // 
+            ClientSize = new Size(278, 244);
+            Name = "FormImportReport";
+            Load += FormImportReport_Load;
+            ResumeLayout(false);
+        }
 
         public FormImportReport()
         {
@@ -171,11 +181,11 @@ namespace QLNT2
             filters.RowStyles.Add(new RowStyle(SizeType.AutoSize));
 
             // Row 0
-            filters.Controls.Add(new Label { Text = "Từ ngày", Anchor = AnchorStyles.Left, AutoSize = true, Margin = new Padding(0,8,6,0) }, 0, 0);
-            dtFrom.Width = 120; dtFrom.Margin = new Padding(0,4,12,4);
+            filters.Controls.Add(new Label { Text = "Từ ngày", Anchor = AnchorStyles.Left, AutoSize = true, Margin = new Padding(0, 8, 6, 0) }, 0, 0);
+            dtFrom.Width = 120; dtFrom.Margin = new Padding(0, 4, 12, 4);
             filters.Controls.Add(dtFrom, 1, 0);
-            filters.Controls.Add(new Label { Text = "Đến ngày", Anchor = AnchorStyles.Left, AutoSize = true, Margin = new Padding(0,8,6,0) }, 2, 0);
-            dtTo.Width = 120; dtTo.Margin = new Padding(0,4,12,4);
+            filters.Controls.Add(new Label { Text = "Đến ngày", Anchor = AnchorStyles.Left, AutoSize = true, Margin = new Padding(0, 8, 6, 0) }, 2, 0);
+            dtTo.Width = 120; dtTo.Margin = new Padding(0, 4, 12, 4);
             filters.Controls.Add(dtTo, 3, 0);
 
             // Buttons panel (right)
@@ -185,14 +195,14 @@ namespace QLNT2
             filters.Controls.Add(btnPanel, 5, 0);
 
             // Row 1
-            filters.Controls.Add(new Label { Text = "Nhà cung cấp", Anchor = AnchorStyles.Left, AutoSize = true, Margin = new Padding(0,8,6,0) }, 0, 1);
-            cboNCC.Width = 220; cboNCC.Margin = new Padding(0,4,12,4);
+            filters.Controls.Add(new Label { Text = "Nhà cung cấp", Anchor = AnchorStyles.Left, AutoSize = true, Margin = new Padding(0, 8, 6, 0) }, 0, 1);
+            cboNCC.Width = 220; cboNCC.Margin = new Padding(0, 4, 12, 4);
             filters.Controls.Add(cboNCC, 1, 1);
-            filters.Controls.Add(new Label { Text = "Giá trị từ (₫)", Anchor = AnchorStyles.Left, AutoSize = true, Margin = new Padding(0,8,6,0) }, 2, 1);
-            numMin.Width = 140; numMin.Margin = new Padding(0,4,12,4);
+            filters.Controls.Add(new Label { Text = "Giá trị từ (₫)", Anchor = AnchorStyles.Left, AutoSize = true, Margin = new Padding(0, 8, 6, 0) }, 2, 1);
+            numMin.Width = 140; numMin.Margin = new Padding(0, 4, 12, 4);
             filters.Controls.Add(numMin, 3, 1);
-            filters.Controls.Add(new Label { Text = "Đến (₫)", Anchor = AnchorStyles.Left, AutoSize = true, Margin = new Padding(0,8,6,0) }, 4, 1);
-            numMax.Width = 140; numMax.Margin = new Padding(0,4,12,4);
+            filters.Controls.Add(new Label { Text = "Đến (₫)", Anchor = AnchorStyles.Left, AutoSize = true, Margin = new Padding(0, 8, 6, 0) }, 4, 1);
+            numMax.Width = 140; numMax.Margin = new Padding(0, 4, 12, 4);
             filters.Controls.Add(numMax, 5, 1);
 
             root.Controls.Add(filters, 0, 1);
@@ -326,6 +336,11 @@ namespace QLNT2
                 sw.Flush();
                 MessageBox.Show("Xuất CSV thành công!");
             }
+        }
+
+        private void FormImportReport_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

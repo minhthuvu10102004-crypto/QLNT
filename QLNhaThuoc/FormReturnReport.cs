@@ -8,7 +8,7 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
-namespace QLNT2
+namespace QLNhaThuoc
 {
     public partial class FormReturnReport : Form
     {
@@ -103,7 +103,17 @@ namespace QLNT2
         List<ReturnRecord> _view = new();
 
         // Minimal InitializeComponent when Designer is absent
-        private void InitializeComponent() { }
+        private void InitializeComponent()
+        {
+            SuspendLayout();
+            // 
+            // FormReturnReport
+            // 
+            ClientSize = new Size(278, 244);
+            Name = "FormReturnReport";
+            Load += FormReturnReport_Load;
+            ResumeLayout(false);
+        }
 
         public FormReturnReport()
         {
@@ -387,6 +397,11 @@ namespace QLNT2
                 sw.Flush();
                 MessageBox.Show("Xuất CSV thành công!");
             }
+        }
+
+        private void FormReturnReport_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

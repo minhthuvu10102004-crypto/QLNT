@@ -2,6 +2,7 @@
 using DevExpress.Map.Native;
 using DevExpress.XtraBars;
 using DevExpress.XtraBars.Ribbon;
+using QLNhaThuoc;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -78,7 +79,48 @@ namespace QLNhaThuoc
 
         private void btnbctk_ItemClick(object sender, ItemClickEventArgs e)
         {
+            pnlform.Controls.Clear();
+            FormInventoryReport f = new FormInventoryReport() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true, FormBorderStyle = FormBorderStyle.None };
+            f.Font = new Font("Arial", 9, FontStyle.Regular);
+            pnlform.Controls.Add(f);
+            f.Show();
+        }
 
+        private void btnbcdt_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            pnlform.Controls.Clear();
+            FormRevenueReport f = new FormRevenueReport() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true, FormBorderStyle = FormBorderStyle.None };
+            f.Font = new Font("Arial", 9, FontStyle.Regular);
+            pnlform.Controls.Add(f);
+            f.Show();
+        }
+
+        private void btnimport_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            pnlform.Controls.Clear();
+            FormImportReport f = new FormImportReport() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true, FormBorderStyle = FormBorderStyle.None };
+            f.Font = new Font("Arial", 9, FontStyle.Regular);
+            pnlform.Controls.Add(f);
+            f.Show();
+        }
+
+        private void barButtonItem1_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            pnlform.Controls.Clear();
+            FormReturnReport f = new FormReturnReport() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true, FormBorderStyle = FormBorderStyle.None };
+            f.Font = new Font("Arial", 9, FontStyle.Regular);
+            pnlform.Controls.Add(f);
+            f.Show();
+
+        }
+
+        private void btnthuoc_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            pnlform.Controls.Clear();
+            FormWarehouse f = new FormWarehouse() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true, FormBorderStyle = FormBorderStyle.None };
+            f.Font = new Font("Arial", 9, FontStyle.Regular);
+            pnlform.Controls.Add(f);
+            f.Show();
         }
     }
 }

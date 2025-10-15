@@ -11,6 +11,21 @@
     <Compile Update="chitietnhaphang.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="FormImportReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FormInventoryReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FormReturnReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FormRevenueReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FormWarehouse.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="frmmain.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -9,7 +9,7 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
-namespace QLNT2
+namespace QLNhaThuoc
 {
     public partial class FormRevenueReport : Form
     {
@@ -118,7 +118,17 @@ namespace QLNT2
         PrintDocument printDoc = new();
 
         // Minimal InitializeComponent in case designer is not present
-        private void InitializeComponent() { }
+        private void InitializeComponent()
+        {
+            SuspendLayout();
+            // 
+            // FormRevenueReport
+            // 
+            ClientSize = new Size(278, 244);
+            Name = "FormRevenueReport";
+            Load += FormRevenueReport_Load;
+            ResumeLayout(false);
+        }
 
         public FormRevenueReport()
         {
@@ -479,6 +489,11 @@ namespace QLNT2
                 _printIndex++;
             }
             _printIndex = 0; e.HasMorePages = false;
+        }
+
+        private void FormRevenueReport_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

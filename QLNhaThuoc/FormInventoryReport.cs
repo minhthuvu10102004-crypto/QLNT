@@ -6,7 +6,7 @@ using System.Drawing.Printing;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace QLNT2
+namespace QLNhaThuoc
 {
     public partial class FormInventoryReport : Form
     {
@@ -145,7 +145,17 @@ namespace QLNT2
         PrintDocument printDoc = new();
 
         // Minimal InitializeComponent when designer not present
-        private void InitializeComponent() { }
+        private void InitializeComponent()
+        {
+            SuspendLayout();
+            // 
+            // FormInventoryReport
+            // 
+            ClientSize = new Size(278, 244);
+            Name = "FormInventoryReport";
+            Load += FormInventoryReport_Load;
+            ResumeLayout(false);
+        }
 
         public FormInventoryReport()
         {
@@ -532,6 +542,11 @@ namespace QLNT2
                 }
                 _rowIndex = 0; _printPhase = 0; e.HasMorePages = false; return;
             }
+        }
+
+        private void FormInventoryReport_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

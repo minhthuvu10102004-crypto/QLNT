@@ -5,7 +5,7 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace QLNT2
+namespace QLNhaThuoc
 {
     public class FormWarehouse : Form
     {
@@ -295,6 +295,11 @@ namespace QLNT2
         {
             var f = new FormThuocPro(item);
             if (f.ShowDialog(this) == DialogResult.OK) ApplyFilter();
+        }
+
+        private void InitializeComponent()
+        {
+
         }
 
         // ========= INVENTORY COUNT =========
