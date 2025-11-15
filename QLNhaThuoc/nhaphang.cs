@@ -478,6 +478,7 @@ namespace QLNhaThuoc
                     }
                     else
                     {
+                        // Nếu không duyệt, đặt lại trạng thái là Nháp
                         view.SetRowCellValue(e.RowHandle, "TrangThai", "Nháp");
                     }
 
