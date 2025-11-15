@@ -164,6 +164,7 @@
             btnhuy.TabIndex = 19;
             btnhuy.Text = "Hủy";
             btnhuy.UseVisualStyleBackColor = true;
+            btnhuy.Click += btnhuy_Click;
             // 
             // btnluu
             // 
@@ -174,6 +175,7 @@
             btnluu.TabIndex = 20;
             btnluu.Text = "Lưu";
             btnluu.UseVisualStyleBackColor = true;
+            btnluu.Click += btnluu_Click;
             // 
             // chitietncc
             // 

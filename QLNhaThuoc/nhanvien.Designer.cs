@@ -32,6 +32,7 @@
             btnloctheo = new DevExpress.XtraEditors.SimpleButton();
             txttimkiem = new DevExpress.XtraEditors.TextEdit();
             btnloc = new DevExpress.XtraEditors.SimpleButton();
+            btntailai = new DevExpress.XtraEditors.SimpleButton();
             flpheader = new System.Windows.Forms.FlowLayoutPanel();
             btnthem = new System.Windows.Forms.Button();
             btnsua = new System.Windows.Forms.Button();
@@ -64,6 +65,7 @@
             flpnv.Controls.Add(btnloctheo);
             flpnv.Controls.Add(txttimkiem);
             flpnv.Controls.Add(btnloc);
+            flpnv.Controls.Add(btntailai);
             flpnv.Location = new System.Drawing.Point(5, 0);
             flpnv.Name = "flpnv";
             flpnv.Size = new System.Drawing.Size(2078, 52);
@@ -104,6 +106,15 @@
             btnloc.Text = "simpleButton1";
             btnloc.ToolTip = "Lọc";
             btnloc.Click += btnloc_Click;
+            // 
+            // btntailai
+            // 
+            btntailai.Location = new System.Drawing.Point(561, 3);
+            btntailai.Name = "btntailai";
+            btntailai.Size = new System.Drawing.Size(35, 35);
+            btntailai.TabIndex = 8;
+            btntailai.ToolTip = "Lấy lại dữ liệu";
+            btntailai.Click += btntailai_Click;
             // 
             // flpheader
             // 
@@ -152,16 +163,17 @@
             btnxoa.TabIndex = 2;
             btnxoa.Text = "Xóa";
             btnxoa.UseVisualStyleBackColor = false;
+            btnxoa.Click += btnxoa_Click;
             // 
             // lblheader
             // 
-            lblheader.Appearance.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
-            lblheader.Appearance.ForeColor = System.Drawing.Color.Black;
+            lblheader.Appearance.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
+            lblheader.Appearance.ForeColor = System.Drawing.Color.FromArgb(66, 144, 242);
             lblheader.Appearance.Options.UseFont = true;
             lblheader.Appearance.Options.UseForeColor = true;
-            lblheader.Location = new System.Drawing.Point(29, 26);
+            lblheader.Location = new System.Drawing.Point(44, 18);
             lblheader.Name = "lblheader";
-            lblheader.Size = new System.Drawing.Size(314, 33);
+            lblheader.Size = new System.Drawing.Size(447, 46);
             lblheader.TabIndex = 8;
             lblheader.Text = "DANH MỤC NHÂN VIÊN";
             // 
@@ -177,6 +189,8 @@
             // 
             // gridControlnv
             // 
+            gridControlnv.CausesValidation = false;
+            gridControlnv.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
             gridControlnv.Location = new System.Drawing.Point(0, 146);
             gridControlnv.MainView = gridViewnv;
             gridControlnv.Name = "gridControlnv";
@@ -186,8 +200,21 @@
             // 
             // gridViewnv
             // 
+            gridViewnv.Appearance.FocusedRow.BackColor = System.Drawing.Color.FromArgb(118, 173, 243);
+            gridViewnv.Appearance.FocusedRow.Options.UseBackColor = true;
+            gridViewnv.Appearance.SelectedRow.BackColor = System.Drawing.Color.FromArgb(118, 173, 243);
+            gridViewnv.Appearance.SelectedRow.Options.UseBackColor = true;
+            gridViewnv.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.None;
             gridViewnv.GridControl = gridControlnv;
             gridViewnv.Name = "gridViewnv";
+            gridViewnv.OptionsSelection.EnableAppearanceFocusedCell = false;
+            gridViewnv.OptionsSelection.EnableAppearanceFocusedRow = false;
+            gridViewnv.OptionsSelection.EnableAppearanceHideSelection = false;
+            gridViewnv.OptionsSelection.MultiSelect = true;
+            gridViewnv.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
+            gridViewnv.OptionsSelection.ShowCheckBoxSelectorInColumnHeader = DevExpress.Utils.DefaultBoolean.True;
+            gridViewnv.RowStyle += gridViewnv_RowStyle;
+            
             // 
             // pceloctheo
             // 
@@ -281,5 +308,6 @@
         private DevExpress.XtraEditors.PopupContainerControl popuploctheo;
         private DevExpress.XtraEditors.CheckEdit checkEdit1;
         private DevExpress.XtraEditors.LabelControl lblTitle;
+        private DevExpress.XtraEditors.SimpleButton btntailai;
     }
 }

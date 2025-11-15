@@ -32,6 +32,7 @@
             btnloctheo = new DevExpress.XtraEditors.SimpleButton();
             txttimkiem = new DevExpress.XtraEditors.TextEdit();
             btnloc = new DevExpress.XtraEditors.SimpleButton();
+            btntailai = new DevExpress.XtraEditors.SimpleButton();
             flpheader = new System.Windows.Forms.FlowLayoutPanel();
             btnthem = new System.Windows.Forms.Button();
             btnsua = new System.Windows.Forms.Button();
@@ -64,6 +65,7 @@
             flpncc.Controls.Add(btnloctheo);
             flpncc.Controls.Add(txttimkiem);
             flpncc.Controls.Add(btnloc);
+            flpncc.Controls.Add(btntailai);
             flpncc.Location = new System.Drawing.Point(5, 0);
             flpncc.Name = "flpncc";
             flpncc.Size = new System.Drawing.Size(1921, 52);
@@ -104,6 +106,15 @@
             btnloc.Text = "simpleButton1";
             btnloc.ToolTip = "Lọc";
             btnloc.Click += btnloc_Click;
+            // 
+            // btntailai
+            // 
+            btntailai.Location = new System.Drawing.Point(561, 3);
+            btntailai.Name = "btntailai";
+            btntailai.Size = new System.Drawing.Size(35, 35);
+            btntailai.TabIndex = 7;
+            btntailai.ToolTip = "Lấy lại dữ liệu";
+            btntailai.Click += btntailai_Click;
             // 
             // flpheader
             // 
@@ -152,16 +163,17 @@
             btnxoa.TabIndex = 2;
             btnxoa.Text = "Xóa";
             btnxoa.UseVisualStyleBackColor = false;
+            btnxoa.Click += btnxoa_Click;
             // 
             // lblheader
             // 
-            lblheader.Appearance.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
-            lblheader.Appearance.ForeColor = System.Drawing.Color.Black;
+            lblheader.Appearance.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
+            lblheader.Appearance.ForeColor = System.Drawing.Color.FromArgb(66, 144, 242);
             lblheader.Appearance.Options.UseFont = true;
             lblheader.Appearance.Options.UseForeColor = true;
-            lblheader.Location = new System.Drawing.Point(29, 26);
+            lblheader.Location = new System.Drawing.Point(44, 18);
             lblheader.Name = "lblheader";
-            lblheader.Size = new System.Drawing.Size(375, 33);
+            lblheader.Size = new System.Drawing.Size(537, 46);
             lblheader.TabIndex = 8;
             lblheader.Text = "DANH MỤC NHÀ CUNG CẤP";
             // 
@@ -177,6 +189,7 @@
             // 
             // gridControlncc
             // 
+            gridControlncc.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
             gridControlncc.Location = new System.Drawing.Point(0, 146);
             gridControlncc.MainView = gridViewncc;
             gridControlncc.Name = "gridControlncc";
@@ -186,8 +199,17 @@
             // 
             // gridViewncc
             // 
+            gridViewncc.Appearance.FocusedRow.BackColor = System.Drawing.Color.FromArgb(118, 173, 243);
+            gridViewncc.Appearance.FocusedRow.Options.UseBackColor = true;
+            gridViewncc.Appearance.SelectedRow.BackColor = System.Drawing.Color.FromArgb(118, 173, 243);
+            gridViewncc.Appearance.SelectedRow.Options.UseBackColor = true;
+            gridViewncc.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.None;
             gridViewncc.GridControl = gridControlncc;
             gridViewncc.Name = "gridViewncc";
+            gridViewncc.OptionsSelection.EnableAppearanceFocusedCell = false;
+            gridViewncc.OptionsSelection.EnableAppearanceFocusedRow = false;
+            gridViewncc.OptionsSelection.EnableAppearanceHideSelection = false;
+            gridViewncc.RowStyle += gridViewncc_RowStyle;
             // 
             // pceloctheo
             // 
@@ -281,6 +303,6 @@
         private DevExpress.XtraEditors.PopupContainerControl popuploctheo;
         private DevExpress.XtraEditors.CheckEdit checkEdit1;
         private DevExpress.XtraEditors.LabelControl lblTitle;
-       
+        private DevExpress.XtraEditors.SimpleButton btntailai;
     }
 }

@@ -160,7 +160,6 @@ D:\PTUD\QLNhaThuoc\QLNhaThuoc\obj\Debug\net8.0-windows\QLNhaThuoc.genruntimeconf
 D:\PTUD\QLNhaThuoc\QLNhaThuoc\obj\Debug\net8.0-windows\ref\QLNhaThuoc.dll
 D:\PTUD\QLNhaThuoc\QLNhaThuoc\obj\Debug\net8.0-windows\QLNhaThuoc.chitietncc.resources
 D:\PTUD\QLNhaThuoc\QLNhaThuoc\obj\Debug\net8.0-windows\QLNhaThuoc.chitietnhanvien.resources
-D:\PTUD\QLNhaThuoc\QLNhaThuoc\obj\Debug\net8.0-windows\QLNhaThuoc.chitietnhaphang.resources
 D:\PTUD\QLNhaThuoc\QLNhaThuoc\obj\Debug\net8.0-windows\QLNhaThuoc.frmmain.resources
 D:\PTUD\QLNhaThuoc\QLNhaThuoc\obj\Debug\net8.0-windows\QLNhaThuoc.nhacungcap.resources
 D:\PTUD\QLNhaThuoc\QLNhaThuoc\obj\Debug\net8.0-windows\QLNhaThuoc.nhanvien.resources
@@ -192,3 +191,14 @@ D:\PTUD\QLNhaThuoc\QLNhaThuoc\bin\Debug\net8.0-windows\runtimes\win-arm64\native
 D:\PTUD\QLNhaThuoc\QLNhaThuoc\bin\Debug\net8.0-windows\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
 D:\PTUD\QLNhaThuoc\QLNhaThuoc\bin\Debug\net8.0-windows\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
 D:\PTUD\QLNhaThuoc\QLNhaThuoc\bin\Debug\net8.0-windows\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+D:\PTUD\QLNhaThuoc\QLNhaThuoc\obj\Debug\net8.0-windows\QLNhaThuoc.frmThemHD.resources
+D:\PTUD\QLNhaThuoc\QLNhaThuoc\obj\Debug\net8.0-windows\QLNhaThuoc.Home.resources
+D:\PTUD\QLNhaThuoc\QLNhaThuoc\obj\Debug\net8.0-windows\QLNhaThuoc.frmHoaDonBH.resources
+D:\PTUD\QLNhaThuoc\QLNhaThuoc\obj\Debug\net8.0-windows\QLNhaThuoc.chungtunhaphang.resources
+D:\PTUD\QLNhaThuoc\QLNhaThuoc\obj\Debug\net8.0-windows\QLNhaThuoc.phieunhapkho.resources
+D:\PTUD\QLNhaThuoc\QLNhaThuoc\obj\Debug\net8.0-windows\QLNhaThuoc.chitietphieudoitra.resources
+D:\PTUD\QLNhaThuoc\QLNhaThuoc\obj\Debug\net8.0-windows\QLNhaThuoc.doitra.resources
+D:\PTUD\QLNhaThuoc\QLNhaThuoc\obj\Debug\net8.0-windows\QLNhaThuoc.phieudoitra.resources
+D:\PTUD\QLNhaThuoc\QLNhaThuoc\obj\Debug\net8.0-windows\QLNhaThuoc.QLBH.resources
+D:\PTUD\QLNhaThuoc\QLNhaThuoc\obj\Debug\net8.0-windows\QLNhaThuoc.QLBH1.resources
+D:\PTUD\QLNhaThuoc\QLNhaThuoc\obj\Debug\net8.0-windows\QLNhaThuoc.frmChiTietKhachHang.resources

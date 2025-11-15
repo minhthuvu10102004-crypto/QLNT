@@ -7,11 +7,15 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Controls.Ribbon;
 using System.Windows.Forms;
+using System.IO;
+using System.Diagnostics;
+
 
 namespace QLNhaThuoc
 {
@@ -121,6 +125,85 @@ namespace QLNhaThuoc
             f.Font = new Font("Arial", 9, FontStyle.Regular);
             pnlform.Controls.Add(f);
             f.Show();
+        }
+
+        private void btnbanhang_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            pnlform.Controls.Clear();
+            Home home = new Home() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true, FormBorderStyle = FormBorderStyle.None };
+            home.Font = new Font("Arial", 9, FontStyle.Regular);
+            pnlform.Controls.Add(home);
+            home.Show();
+
+
+        }
+
+        private void btnhdsd_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            string filePath = Path.Combine(Application.StartupPath, "Huongdansudung.pdf");
+
+            if (File.Exists(filePath))
+            {
+                try
+                {
+                    Process.Start(new ProcessStartInfo(filePath)
+                    {
+                        UseShellExecute = true
+                    });
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Không thể mở file PDF: " + ex.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Không tìm thấy file hướng dẫn tại:\n" + filePath);
+            }
+
+
+        }
+
+        private void btnlienhe_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+            {
+                FileName = "https://www.facebook.com/Nhathuocfptlongchau",
+                UseShellExecute = true
+            });
+        }
+
+        private void btngioithieu_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            string filePath = Path.Combine(Application.StartupPath, "GioiThieuPhanMem.pdf");
+
+            if (File.Exists(filePath))
+            {
+                try
+                {
+                    Process.Start(new ProcessStartInfo(filePath)
+                    {
+                        UseShellExecute = true
+                    });
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Không thể mở file PDF: " + ex.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Không tìm thấy file hướng dẫn tại:\n" + filePath);
+            }
+        }
+
+        private void btnreturn_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            pnlform.Controls.Clear();
+            doitra doitra = new doitra() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true, FormBorderStyle = FormBorderStyle.None };
+            pnlform.Controls.Add(doitra);
+            doitra.Show();
+
         }
     }
 }

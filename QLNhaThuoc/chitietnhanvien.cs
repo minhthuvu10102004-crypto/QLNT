@@ -1,8 +1,10 @@
-﻿using DevExpress.XtraEditors;
+﻿using DevExpress.XtraCharts.Design;
+using DevExpress.XtraEditors;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
@@ -10,19 +12,31 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace QLNhaThuoc
 {
     public partial class chitietnhanvien : DevExpress.XtraEditors.XtraForm
     {
+        SqlConnection conn = new SqlConnection();
+        SqlDataAdapter da = new SqlDataAdapter();
+        SqlCommand cmd = new SqlCommand();
+        DataTable dt = new DataTable();
+        string sql, constr;
+        string _maMoi;
         public enum Mode { ThemMoi, ChinhSua }
 
         public Mode FormMode { get; set; }
-        public string MaNCC { get; set; }
-        public chitietnhanvien(Mode mode, string maNCC = "")
+        public string MaNV { get; set; }
+        public chitietnhanvien(Mode mode, string maNV = "")
         {
             InitializeComponent();
             FormMode = mode;
-            MaNCC = maNCC;
+            MaNV = maNV;
+        }
+        public chitietnhanvien(string maMoi)
+        {
+            InitializeComponent();
+            _maMoi = maMoi;
         }
         public chitietnhanvien()
         {
@@ -30,7 +44,7 @@ namespace QLNhaThuoc
         }
         private void BtnCustom_Paint(object sender, PaintEventArgs e)
         {
-          
+
             Button btn = sender as Button;
             int radius = 20; // bán kính bo góc
             Rectangle rect = new Rectangle(0, 0, btn.Width, btn.Height);
@@ -91,7 +105,7 @@ namespace QLNhaThuoc
             {
                 btnhuy.BackColor = Color.FromArgb(118, 173, 243);
             };
-           
+
             //nút lưu
             btnluu.FlatStyle = FlatStyle.Flat;
             btnluu.FlatAppearance.BorderSize = 0;
@@ -103,34 +117,132 @@ namespace QLNhaThuoc
             btnluu.MouseEnter += (s, e) =>
             {
                 btnluu.BackColor = Color.FromArgb(118, 173, 243);
-             
+
             };
             btnluu.MouseLeave += (s, e) =>
             {
-                btnluu.BackColor = Color.FromArgb(66,144,242);
-                
+                btnluu.BackColor = Color.FromArgb(66, 144, 242);
+
             };
             //màu khi nhấn
             btnluu.MouseDown += (s, e) =>
             {
-                btnluu.BackColor = Color.FromArgb(118,173,243);
-              
+                btnluu.BackColor = Color.FromArgb(118, 173, 243);
+
             };
-           
-            
+            date.Properties.Mask.EditMask = "dd/MM/yyyy";
+            date.Properties.Mask.UseMaskAsDisplayFormat = true;
+            date.Properties.DisplayFormat.FormatString = "dd/MM/yyyy";
+            date.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            date.Properties.EditFormat.FormatString = "dd/MM/yyyy";
+            date.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            //
+            txtmanv.Text = _maMoi;
+            txtmanv.ReadOnly = true;
+            txtmanv.Properties.AllowFocused= false;
+
+
         }
         private void LoadData()
         {
-            // Giả sử bạn có một phương thức để lấy dữ liệu nhà cung cấp từ cơ sở dữ liệu
-            // Ví dụ: var ncc = Database.GetNhaCungCapById(MaNCC);
-            // Sau đó, gán dữ liệu vào các điều khiển trên form
-            // txtTenNCC.Text = ncc.TenNCC;
-            // txtDiaChi.Text = ncc.DiaChi;
-            // txtSoDienThoai.Text = ncc.SoDienThoai;
-            // txtEmail.Text = ncc.Email;
+            string connectionString = @"Data Source=MINHTHUVU\MINHTHU;Initial Catalog=QLBH_NhaThuoc;Integrated Security=True;Encrypt=False";
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    string sql = "SELECT * FROM NhanVien WHERE MaNV = @MaNV";
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@MaNV", MaNV);
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                txtmanv.Text = reader["MaNV"].ToString();
+                                txtten.Text = reader["TenNV"].ToString();
+                                txtdiachi.Text = reader["DiaChi"].ToString();
+                                txtsdt.Text = reader["SDT"].ToString();
+                                date.Text = reader["NgaySinh"].ToString();
+                                cbogender.Text = reader["GioiTinh"].ToString();
+                            }
+
+
+                            else
+                            {
+                                MessageBox.Show("Không tìm thấy nhân viên với Mã NV đã cho.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                this.Close();
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi: " + ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            txtmanv.Enabled = false;
         }
         private void btnhuy_Click(object sender, EventArgs e)
         {
+            this.Close();
+        }
+
+        private void btnluu_Click(object sender, EventArgs e)
+        {
+            // 1. Lấy dữ liệu từ các TextBox
+            string maNV = txtmanv.Text.Trim();
+            string tenNV = txtten.Text.Trim();
+            string ngaySinh = date.Text.Trim();
+            string gioiTinh = cbogender.Text.Trim();
+            string diaChi = txtdiachi.Text.Trim();
+            string sdt = txtsdt.Text.Trim();
+           
+            // 2. Kiểm tra dữ liệu hợp lệ (có thể thêm các kiểm tra khác nếu cần)
+            if (string.IsNullOrEmpty(maNV) || string.IsNullOrEmpty(tenNV))
+            {
+                MessageBox.Show("Mã nhân viên và Tên nhân viên không được để trống.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            // 3. Kết nối CSDL
+            string connectionString = @"Data Source=MINHTHUVU\MINHTHU;Initial Catalog=QLBH_NhaThuoc;Integrated Security=True;Encrypt=False";
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+
+                conn.Open();
+
+                if (FormMode == Mode.ThemMoi)
+                {
+                    string sql = "INSERT INTO NhanVien (MaNV, TenNV, GioiTinh, NgaySinh, SDT, DiaChi,) VALUES (@MaNV, @TenNV, @GioiTinh, @NgaySinh, @SDT, @DiaChi)";
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@MaNV", maNV);
+                        cmd.Parameters.AddWithValue("@TenNV", tenNV);
+                        cmd.Parameters.AddWithValue("@GioiTinh", gioiTinh);
+                        cmd.Parameters.AddWithValue("@NgaySinh", ngaySinh);                      
+                        cmd.Parameters.AddWithValue("@SDT", sdt);
+                        cmd.Parameters.AddWithValue("@DiaChi", diaChi);
+                        cmd.ExecuteNonQuery();
+                    }
+                    MessageBox.Show("Thêm mới nhân viên thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else // Chỉnh sửa
+                {
+                    string sql = "UPDATE NhanVien SET TenNV = @TenNV, GioiTinh = @GioiTinh, NgaySinh = @NgaySinh, SDT = @SDT, DiaChi = @DiaChi WHERE MaNV = @MaNV";
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@MaNV", maNV);
+                        cmd.Parameters.AddWithValue("@TenNV", tenNV);
+                        cmd.Parameters.AddWithValue("@GioiTinh", gioiTinh);
+                        cmd.Parameters.AddWithValue("@NgaySinh", ngaySinh);
+                        cmd.Parameters.AddWithValue("@SDT", sdt);
+                        cmd.Parameters.AddWithValue("@DiaChi", diaChi);                                            
+                        cmd.ExecuteNonQuery();
+                    }
+                    MessageBox.Show("Cập nhật thông tin nhân viên thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
             this.Close();
         }
     }

@@ -31,12 +31,10 @@
             lblheader = new DevExpress.XtraEditors.LabelControl();
             pnlnhaphang = new DevExpress.XtraEditors.PanelControl();
             flpnhaphang = new System.Windows.Forms.FlowLayoutPanel();
-            btnloctheo = new DevExpress.XtraEditors.SimpleButton();
             txttimkiem = new DevExpress.XtraEditors.TextEdit();
             btnloc = new DevExpress.XtraEditors.SimpleButton();
             lblthoigian = new DevExpress.XtraEditors.LabelControl();
             btntailai = new DevExpress.XtraEditors.SimpleButton();
-            btnxuat = new DevExpress.XtraEditors.SimpleButton();
             btncaidat = new DevExpress.XtraEditors.SimpleButton();
             flpheader = new System.Windows.Forms.FlowLayoutPanel();
             btnthem = new System.Windows.Forms.Button();
@@ -44,10 +42,6 @@
             btnxoa = new System.Windows.Forms.Button();
             gridControlnhaphang = new DevExpress.XtraGrid.GridControl();
             gridViewnhaphang = new DevExpress.XtraGrid.Views.Grid.GridView();
-            pceloctheo = new DevExpress.XtraEditors.PopupContainerEdit();
-            popuploctheo = new DevExpress.XtraEditors.PopupContainerControl();
-            checkEdit1 = new DevExpress.XtraEditors.CheckEdit();
-            labelControl1 = new DevExpress.XtraEditors.LabelControl();
             pcelocchitiet = new DevExpress.XtraEditors.PopupContainerEdit();
             popuplocchitiet = new DevExpress.XtraEditors.PopupContainerControl();
             lbltitle = new DevExpress.XtraEditors.LabelControl();
@@ -58,10 +52,6 @@
             flpheader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)gridControlnhaphang).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gridViewnhaphang).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pceloctheo.Properties).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)popuploctheo).BeginInit();
-            popuploctheo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)checkEdit1.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pcelocchitiet.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)popuplocchitiet).BeginInit();
             popuplocchitiet.SuspendLayout();
@@ -69,13 +59,13 @@
             // 
             // lblheader
             // 
-            lblheader.Appearance.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
-            lblheader.Appearance.ForeColor = System.Drawing.Color.Black;
+            lblheader.Appearance.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
+            lblheader.Appearance.ForeColor = System.Drawing.Color.FromArgb(66, 144, 242);
             lblheader.Appearance.Options.UseFont = true;
             lblheader.Appearance.Options.UseForeColor = true;
-            lblheader.Location = new System.Drawing.Point(29, 26);
+            lblheader.Location = new System.Drawing.Point(44, 12);
             lblheader.Name = "lblheader";
-            lblheader.Size = new System.Drawing.Size(298, 33);
+            lblheader.Size = new System.Drawing.Size(429, 46);
             lblheader.TabIndex = 0;
             lblheader.Text = "QUẢN LÝ NHẬP HÀNG";
             // 
@@ -98,36 +88,26 @@
             // flpnhaphang
             // 
             flpnhaphang.Anchor = System.Windows.Forms.AnchorStyles.None;
-            flpnhaphang.Controls.Add(btnloctheo);
             flpnhaphang.Controls.Add(txttimkiem);
             flpnhaphang.Controls.Add(btnloc);
             flpnhaphang.Controls.Add(lblthoigian);
             flpnhaphang.Controls.Add(btntailai);
-            flpnhaphang.Controls.Add(btnxuat);
             flpnhaphang.Controls.Add(btncaidat);
-            flpnhaphang.Location = new System.Drawing.Point(0, 5);
+            flpnhaphang.Location = new System.Drawing.Point(12, 5);
             flpnhaphang.Name = "flpnhaphang";
-            flpnhaphang.Size = new System.Drawing.Size(1927, 52);
+            flpnhaphang.Size = new System.Drawing.Size(1915, 52);
             flpnhaphang.TabIndex = 0;
-            // 
-            // btnloctheo
-            // 
-            btnloctheo.Location = new System.Drawing.Point(3, 3);
-            btnloctheo.Name = "btnloctheo";
-            btnloctheo.Size = new System.Drawing.Size(35, 35);
-            btnloctheo.TabIndex = 6;
-            btnloctheo.ToolTip = "Nhấn vào đây để thay đổi thông tin cần tìm kiếm.";
-            btnloctheo.Click += btnloctheo_Click;
             // 
             // txttimkiem
             // 
-            txttimkiem.Location = new System.Drawing.Point(44, 3);
+            txttimkiem.Location = new System.Drawing.Point(3, 3);
             txttimkiem.Name = "txttimkiem";
             txttimkiem.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
             txttimkiem.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
             txttimkiem.Properties.Appearance.Options.UseFont = true;
             txttimkiem.Size = new System.Drawing.Size(422, 28);
             txttimkiem.TabIndex = 0;
+            txttimkiem.ToolTip = "Nhập số phiếu để tìm kiếm nhanh";
             txttimkiem.ToolTipIconType = DevExpress.Utils.ToolTipIconType.Information;
             // 
             // btnloc
@@ -138,7 +118,7 @@
             btnloc.Appearance.Options.UseFont = true;
             btnloc.AppearanceDisabled.BorderColor = System.Drawing.Color.DarkGray;
             btnloc.AppearanceDisabled.Options.UseBorderColor = true;
-            btnloc.Location = new System.Drawing.Point(472, 3);
+            btnloc.Location = new System.Drawing.Point(431, 3);
             btnloc.Name = "btnloc";
             btnloc.Size = new System.Drawing.Size(83, 28);
             btnloc.TabIndex = 1;
@@ -148,37 +128,29 @@
             // 
             // lblthoigian
             // 
-            lblthoigian.Appearance.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
-            lblthoigian.Appearance.ForeColor = System.Drawing.Color.FromArgb(123, 177, 241);
+            lblthoigian.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            lblthoigian.Appearance.ForeColor = System.Drawing.Color.Black;
             lblthoigian.Appearance.Options.UseFont = true;
             lblthoigian.Appearance.Options.UseForeColor = true;
             lblthoigian.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.Horizontal;
-            lblthoigian.Location = new System.Drawing.Point(561, 3);
+            lblthoigian.Location = new System.Drawing.Point(520, 3);
             lblthoigian.Name = "lblthoigian";
-            lblthoigian.Size = new System.Drawing.Size(71, 18);
+            lblthoigian.Size = new System.Drawing.Size(0, 21);
             lblthoigian.TabIndex = 2;
-            lblthoigian.Text = "Ngày HĐ: ";
+            lblthoigian.ToolTip = "Ngày lọc";
             // 
             // btntailai
             // 
-            btntailai.Location = new System.Drawing.Point(638, 3);
+            btntailai.Location = new System.Drawing.Point(526, 3);
             btntailai.Name = "btntailai";
             btntailai.Size = new System.Drawing.Size(35, 35);
             btntailai.TabIndex = 3;
             btntailai.ToolTip = "Lấy lại dữ liệu";
             btntailai.Click += btntailai_Click;
             // 
-            // btnxuat
-            // 
-            btnxuat.Location = new System.Drawing.Point(679, 3);
-            btnxuat.Name = "btnxuat";
-            btnxuat.Size = new System.Drawing.Size(35, 35);
-            btnxuat.TabIndex = 5;
-            btnxuat.ToolTip = "Xuất khẩu chi tiết hóa đơn";
-            // 
             // btncaidat
             // 
-            btncaidat.Location = new System.Drawing.Point(720, 3);
+            btncaidat.Location = new System.Drawing.Point(567, 3);
             btncaidat.Name = "btncaidat";
             btncaidat.Size = new System.Drawing.Size(35, 35);
             btncaidat.TabIndex = 4;
@@ -198,6 +170,7 @@
             // btnthem
             // 
             btnthem.BackColor = System.Drawing.Color.FromArgb(66, 144, 242);
+            btnthem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             btnthem.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
             btnthem.ForeColor = System.Drawing.Color.White;
             btnthem.Location = new System.Drawing.Point(3, 3);
@@ -211,6 +184,7 @@
             // btnsua
             // 
             btnsua.BackColor = System.Drawing.Color.FromArgb(66, 144, 242);
+            btnsua.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             btnsua.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
             btnsua.ForeColor = System.Drawing.Color.White;
             btnsua.Location = new System.Drawing.Point(123, 3);
@@ -219,10 +193,12 @@
             btnsua.TabIndex = 1;
             btnsua.Text = "Sửa";
             btnsua.UseVisualStyleBackColor = false;
+            btnsua.Click += btnsua_Click;
             // 
             // btnxoa
             // 
             btnxoa.BackColor = System.Drawing.Color.FromArgb(66, 144, 242);
+            btnxoa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             btnxoa.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
             btnxoa.ForeColor = System.Drawing.Color.White;
             btnxoa.Location = new System.Drawing.Point(243, 3);
@@ -231,13 +207,14 @@
             btnxoa.TabIndex = 2;
             btnxoa.Text = "Xóa";
             btnxoa.UseVisualStyleBackColor = false;
+            btnxoa.Click += btnxoa_Click;
             // 
             // gridControlnhaphang
             // 
-            gridControlnhaphang.Location = new System.Drawing.Point(0, 144);
+            gridControlnhaphang.Location = new System.Drawing.Point(12, 144);
             gridControlnhaphang.MainView = gridViewnhaphang;
             gridControlnhaphang.Name = "gridControlnhaphang";
-            gridControlnhaphang.Size = new System.Drawing.Size(1927, 599);
+            gridControlnhaphang.Size = new System.Drawing.Size(1899, 599);
             gridControlnhaphang.TabIndex = 4;
             gridControlnhaphang.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gridViewnhaphang });
             // 
@@ -254,44 +231,7 @@
             gridViewnhaphang.OptionsView.EnableAppearanceEvenRow = true;
             gridViewnhaphang.OptionsView.ShowGroupPanel = false;
             gridViewnhaphang.RowHeight = 30;
-            // 
-            // pceloctheo
-            // 
-            pceloctheo.Location = new System.Drawing.Point(3, 149);
-            pceloctheo.Name = "pceloctheo";
-            pceloctheo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
-            pceloctheo.Properties.PopupControl = popuploctheo;
-            pceloctheo.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
-            pceloctheo.Size = new System.Drawing.Size(237, 26);
-            pceloctheo.TabIndex = 5;
-            pceloctheo.Visible = false;
-            // 
-            // popuploctheo
-            // 
-            popuploctheo.Controls.Add(checkEdit1);
-            popuploctheo.Controls.Add(labelControl1);
-            popuploctheo.Location = new System.Drawing.Point(3, 173);
-            popuploctheo.Name = "popuploctheo";
-            popuploctheo.Size = new System.Drawing.Size(237, 198);
-            popuploctheo.TabIndex = 6;
-            // 
-            // checkEdit1
-            // 
-            checkEdit1.Location = new System.Drawing.Point(23, 33);
-            checkEdit1.Name = "checkEdit1";
-            checkEdit1.Properties.Caption = "checkEdit1";
-            checkEdit1.Size = new System.Drawing.Size(184, 27);
-            checkEdit1.TabIndex = 7;
-            // 
-            // labelControl1
-            // 
-            labelControl1.Appearance.ForeColor = System.Drawing.Color.Black;
-            labelControl1.Appearance.Options.UseForeColor = true;
-            labelControl1.Location = new System.Drawing.Point(70, 8);
-            labelControl1.Name = "labelControl1";
-            labelControl1.Size = new System.Drawing.Size(94, 19);
-            labelControl1.TabIndex = 7;
-            labelControl1.Text = "labelControl1";
+            gridViewnhaphang.RowStyle += gridViewnhaphang_RowStyle;
             // 
             // pcelocchitiet
             // 
@@ -336,8 +276,6 @@
             ClientSize = new System.Drawing.Size(1923, 741);
             Controls.Add(popuplocchitiet);
             Controls.Add(pcelocchitiet);
-            Controls.Add(pceloctheo);
-            Controls.Add(popuploctheo);
             Controls.Add(gridControlnhaphang);
             Controls.Add(flpheader);
             Controls.Add(pnlnhaphang);
@@ -354,11 +292,6 @@
             flpheader.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)gridControlnhaphang).EndInit();
             ((System.ComponentModel.ISupportInitialize)gridViewnhaphang).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pceloctheo.Properties).EndInit();
-            ((System.ComponentModel.ISupportInitialize)popuploctheo).EndInit();
-            popuploctheo.ResumeLayout(false);
-            popuploctheo.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)checkEdit1.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)pcelocchitiet.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)popuplocchitiet).EndInit();
             popuplocchitiet.ResumeLayout(false);
@@ -380,15 +313,9 @@
         private System.Windows.Forms.Button btnxoa;
         private DevExpress.XtraEditors.LabelControl lblthoigian;
         private DevExpress.XtraEditors.SimpleButton btntailai;
-        private DevExpress.XtraEditors.SimpleButton btnxuat;
         private DevExpress.XtraEditors.SimpleButton btncaidat;
         private DevExpress.XtraGrid.GridControl gridControlnhaphang;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridViewnhaphang;
-        private DevExpress.XtraEditors.SimpleButton btnloctheo;
-        private DevExpress.XtraEditors.PopupContainerEdit pceloctheo;
-        private DevExpress.XtraEditors.PopupContainerControl popuploctheo;
-        private DevExpress.XtraEditors.CheckEdit checkEdit1;
-        private DevExpress.XtraEditors.LabelControl labelControl1;
+        public DevExpress.XtraGrid.Views.Grid.GridView gridViewnhaphang;
         private DevExpress.XtraEditors.PopupContainerEdit pcelocchitiet;
         private DevExpress.XtraEditors.PopupContainerControl popuplocchitiet;
         private DevExpress.XtraEditors.LabelControl lbltitle;

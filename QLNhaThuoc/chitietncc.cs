@@ -9,20 +9,35 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace QLNhaThuoc
 {
+   
     public partial class chitietncc : DevExpress.XtraEditors.XtraForm
+
     {
+        SqlConnection conn = new SqlConnection();
+        SqlDataAdapter da = new SqlDataAdapter();
+        SqlCommand cmd = new SqlCommand();
+        DataTable dt = new DataTable();
+        string sql, constr;
+        private string _maMoi;
         public enum Mode { ThemMoi, ChinhSua }
 
         public Mode FormMode { get; set; }
         public string MaNCC { get; set; }
+        public chitietncc(string maMoi)
+        {
+            InitializeComponent();
+            _maMoi = maMoi;
+        }
         public chitietncc(Mode mode, string maNCC = "")
         {
             InitializeComponent();
             FormMode = mode;
             MaNCC = maNCC;
+           
         }
         public chitietncc()
         {
@@ -30,7 +45,7 @@ namespace QLNhaThuoc
         }
         private void BtnCustom_Paint(object sender, PaintEventArgs e)
         {
-          
+
             Button btn = sender as Button;
             int radius = 20; // bán kính bo góc
             Rectangle rect = new Rectangle(0, 0, btn.Width, btn.Height);
@@ -50,6 +65,7 @@ namespace QLNhaThuoc
         }
         private void chitietncc_Load(object sender, EventArgs e)
         {
+
             if (FormMode == Mode.ThemMoi)
             {
                 lblTitle.Text = "THÊM MỚI NHÀ CUNG CẤP";
@@ -88,7 +104,7 @@ namespace QLNhaThuoc
             {
                 btnhuy.BackColor = Color.FromArgb(118, 173, 243);
             };
-            
+
             //nút lưu
             btnluu.FlatStyle = FlatStyle.Flat;
             btnluu.FlatAppearance.BorderSize = 0;
@@ -114,21 +130,111 @@ namespace QLNhaThuoc
             {
                 btnluu.BackColor = Color.FromArgb(118, 173, 243);
             };
-           
+            //
+            txtmancc.Text = _maMoi;
+            txtmancc.ReadOnly = true;
+            txtmancc.Properties.AllowFocused = false;
+
+
         }
         private void LoadData()
         {
-            // Giả sử bạn có một phương thức để lấy dữ liệu nhà cung cấp từ cơ sở dữ liệu
-            // Ví dụ: var ncc = Database.GetNhaCungCapById(MaNCC);
-            // Sau đó, gán dữ liệu vào các điều khiển trên form
-            // txtTenNCC.Text = ncc.TenNCC;
-            // txtDiaChi.Text = ncc.DiaChi;
-            // txtSoDienThoai.Text = ncc.SoDienThoai;
-            // txtEmail.Text = ncc.Email;
+            string connectionString = @"Data Source=MINHTHUVU\MINHTHU;Initial Catalog=QLBH_NhaThuoc;Integrated Security=True;Encrypt=False";
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    string sql = "SELECT * FROM NhaCungCap WHERE MaNCC = @MaNCC";
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@MaNCC", MaNCC);
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                txtmancc.Text = reader["MaNCC"].ToString();
+                                txtten.Text = reader["TenNCC"].ToString();
+                                txtdiachi.Text = reader["DiaChi"].ToString();
+                                txtsdt.Text = reader["SDT"].ToString();
+                                txtemail.Text = reader["Email"].ToString();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Không tìm thấy nhà cung cấp với Mã NCC đã cho.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                this.Close();
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi: " + ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            txtmancc.Enabled = false;
         }
         private void btnhuy_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+
+        private void btnluu_Click(object sender, EventArgs e)
+        {
+            // 1. Lấy dữ liệu từ các TextBox
+            string maNCC = txtmancc.Text.Trim();
+            string tenNCC = txtten.Text.Trim();
+            string diaChi = txtdiachi.Text.Trim();
+            string sdt = txtsdt.Text.Trim();
+            string email = txtemail.Text.Trim();
+            // 2. Kiểm tra dữ liệu hợp lệ (có thể thêm các kiểm tra khác nếu cần)
+            if (string.IsNullOrEmpty(maNCC) || string.IsNullOrEmpty(tenNCC))
+            {
+                MessageBox.Show("Mã nhà cung cấp và Tên nhà cung cấp không được để trống.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            // 3. Kết nối CSDL
+            string connectionString = @"Data Source=MINHTHUVU\MINHTHU;Initial Catalog=QLBH_NhaThuoc;Integrated Security=True;Encrypt=False";
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                
+                    conn.Open();
+
+                    if (FormMode == Mode.ThemMoi)
+                    {
+                        string sql = "INSERT INTO NhaCungCap (MaNCC, TenNCC, DiaChi, SDT, Email) VALUES (@MaNCC, @TenNCC, @DiaChi, @SDT, @Email)";
+                        using (SqlCommand cmd = new SqlCommand(sql, conn))
+                        {
+                            cmd.Parameters.AddWithValue("@MaNCC", maNCC);
+                            cmd.Parameters.AddWithValue("@TenNCC", tenNCC);
+                            cmd.Parameters.AddWithValue("@DiaChi", diaChi);
+                            cmd.Parameters.AddWithValue("@SDT", sdt);
+                            cmd.Parameters.AddWithValue("@Email", email);
+                            cmd.ExecuteNonQuery();
+                        }
+                        MessageBox.Show("Thêm mới nhà cung cấp thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else // Chỉnh sửa
+                    {
+                        string sql = "UPDATE NhaCungCap SET TenNCC = @TenNCC, DiaChi = @DiaChi, SDT = @SDT, Email = @Email WHERE MaNCC = @MaNCC";
+                        using (SqlCommand cmd = new SqlCommand(sql, conn))
+                        {
+                            cmd.Parameters.AddWithValue("@MaNCC", maNCC);
+                            cmd.Parameters.AddWithValue("@TenNCC", tenNCC);
+                            cmd.Parameters.AddWithValue("@DiaChi", diaChi);
+                            cmd.Parameters.AddWithValue("@SDT", sdt);
+                            cmd.Parameters.AddWithValue("@Email", email);
+                            cmd.ExecuteNonQuery();
+                        }
+                        MessageBox.Show("Cập nhật thông tin nhà cung cấp thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+            this.Close();
+
+        }
     }
 }
+
+
+    

@@ -37,8 +37,6 @@
             txtdiachi = new DevExpress.XtraEditors.TextEdit();
             lblsdt = new DevExpress.XtraEditors.LabelControl();
             txtsdt = new DevExpress.XtraEditors.TextEdit();
-            lblemail = new DevExpress.XtraEditors.LabelControl();
-            txtemail = new DevExpress.XtraEditors.TextEdit();
             btnhuy = new System.Windows.Forms.Button();
             btnluu = new System.Windows.Forms.Button();
             labelControl1 = new DevExpress.XtraEditors.LabelControl();
@@ -49,7 +47,6 @@
             ((System.ComponentModel.ISupportInitialize)txtten.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtdiachi.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtsdt.Properties).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)txtemail.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)cbogender.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)date.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)date.Properties.CalendarTimeProperties).BeginInit();
@@ -109,7 +106,7 @@
             // 
             lbldiachi.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
             lbldiachi.Appearance.Options.UseFont = true;
-            lbldiachi.Location = new System.Drawing.Point(12, 382);
+            lbldiachi.Location = new System.Drawing.Point(12, 337);
             lbldiachi.Name = "lbldiachi";
             lbldiachi.Size = new System.Drawing.Size(60, 21);
             lbldiachi.TabIndex = 13;
@@ -117,7 +114,7 @@
             // 
             // txtdiachi
             // 
-            txtdiachi.Location = new System.Drawing.Point(190, 375);
+            txtdiachi.Location = new System.Drawing.Point(190, 334);
             txtdiachi.Name = "txtdiachi";
             txtdiachi.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
             txtdiachi.Properties.Appearance.Options.UseFont = true;
@@ -143,44 +140,27 @@
             txtsdt.Size = new System.Drawing.Size(208, 28);
             txtsdt.TabIndex = 16;
             // 
-            // lblemail
-            // 
-            lblemail.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
-            lblemail.Appearance.Options.UseFont = true;
-            lblemail.Location = new System.Drawing.Point(12, 331);
-            lblemail.Name = "lblemail";
-            lblemail.Size = new System.Drawing.Size(49, 21);
-            lblemail.TabIndex = 17;
-            lblemail.Text = "Email:";
-            // 
-            // txtemail
-            // 
-            txtemail.Location = new System.Drawing.Point(190, 324);
-            txtemail.Name = "txtemail";
-            txtemail.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
-            txtemail.Properties.Appearance.Options.UseFont = true;
-            txtemail.Size = new System.Drawing.Size(316, 28);
-            txtemail.TabIndex = 18;
-            // 
             // btnhuy
             // 
             btnhuy.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
-            btnhuy.Location = new System.Drawing.Point(460, 434);
+            btnhuy.Location = new System.Drawing.Point(460, 408);
             btnhuy.Name = "btnhuy";
             btnhuy.Size = new System.Drawing.Size(105, 44);
             btnhuy.TabIndex = 19;
             btnhuy.Text = "Hủy";
             btnhuy.UseVisualStyleBackColor = true;
+            btnhuy.Click += btnhuy_Click;
             // 
             // btnluu
             // 
             btnluu.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
-            btnluu.Location = new System.Drawing.Point(612, 434);
+            btnluu.Location = new System.Drawing.Point(612, 408);
             btnluu.Name = "btnluu";
             btnluu.Size = new System.Drawing.Size(105, 44);
             btnluu.TabIndex = 20;
             btnluu.Text = "Lưu";
             btnluu.UseVisualStyleBackColor = true;
+            btnluu.Click += btnluu_Click;
             // 
             // labelControl1
             // 
@@ -206,8 +186,10 @@
             // 
             cbogender.Location = new System.Drawing.Point(190, 174);
             cbogender.Name = "cbogender";
+            cbogender.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            cbogender.Properties.Appearance.Options.UseFont = true;
             cbogender.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
-            cbogender.Size = new System.Drawing.Size(80, 26);
+            cbogender.Size = new System.Drawing.Size(80, 28);
             cbogender.TabIndex = 23;
             // 
             // date
@@ -215,9 +197,11 @@
             date.EditValue = null;
             date.Location = new System.Drawing.Point(190, 225);
             date.Name = "date";
+            date.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            date.Properties.Appearance.Options.UseFont = true;
             date.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
             date.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
-            date.Size = new System.Drawing.Size(185, 26);
+            date.Size = new System.Drawing.Size(185, 28);
             date.TabIndex = 24;
             // 
             // chitietnhanvien
@@ -233,8 +217,6 @@
             Controls.Add(labelControl1);
             Controls.Add(btnluu);
             Controls.Add(btnhuy);
-            Controls.Add(txtemail);
-            Controls.Add(lblemail);
             Controls.Add(txtsdt);
             Controls.Add(lblsdt);
             Controls.Add(txtdiachi);
@@ -251,7 +233,6 @@
             ((System.ComponentModel.ISupportInitialize)txtten.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)txtdiachi.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)txtsdt.Properties).EndInit();
-            ((System.ComponentModel.ISupportInitialize)txtemail.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)cbogender.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)date.Properties.CalendarTimeProperties).EndInit();
             ((System.ComponentModel.ISupportInitialize)date.Properties).EndInit();
@@ -270,9 +251,7 @@
         private DevExpress.XtraEditors.TextEdit txtdiachi;
         private DevExpress.XtraEditors.LabelControl lblsdt;
         private DevExpress.XtraEditors.TextEdit txtsdt;
-        private DevExpress.XtraEditors.LabelControl lblemail;
         private DevExpress.XtraEditors.LabelControl labelControl1;
-        private DevExpress.XtraEditors.TextEdit txtemail;
         private System.Windows.Forms.Button btnhuy;
         private System.Windows.Forms.Button btnluu;
         private DevExpress.XtraEditors.LabelControl labelControl2;

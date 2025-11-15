@@ -50,6 +50,7 @@
             btngioithieu = new DevExpress.XtraBars.BarButtonItem();
             btnimport = new DevExpress.XtraBars.BarButtonItem();
             barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
+            btnreturn = new DevExpress.XtraBars.BarButtonItem();
             ribbonnghiepvu = new DevExpress.XtraBars.Ribbon.RibbonPage();
             grpnghiepvu = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             ribbonDM = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -72,10 +73,10 @@
             ribbonmain.EmptyAreaImageOptions.ImagePadding = new System.Windows.Forms.Padding(34);
             ribbonmain.ExpandCollapseItem.Id = 0;
             ribbonmain.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
-            ribbonmain.Items.AddRange(new DevExpress.XtraBars.BarItem[] { ribbonmain.ExpandCollapseItem, btnnv, btnncc, btnthuoc, btnnhaphang, btnbanhang, btnbcdt, btnbctk, barStaticItemstt, barStaticItemTime, btnhethong, btndn, btndx, btnthoat, btnhelp, btnhdsd, btnlienhe, btngioithieu, btnimport, barButtonItem1 });
+            ribbonmain.Items.AddRange(new DevExpress.XtraBars.BarItem[] { ribbonmain.ExpandCollapseItem, btnnv, btnncc, btnthuoc, btnnhaphang, btnbanhang, btnbcdt, btnbctk, barStaticItemstt, barStaticItemTime, btnhethong, btndn, btndx, btnthoat, btnhelp, btnhdsd, btnlienhe, btngioithieu, btnimport, barButtonItem1, btnreturn });
             ribbonmain.Location = new System.Drawing.Point(0, 0);
             ribbonmain.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            ribbonmain.MaxItemId = 34;
+            ribbonmain.MaxItemId = 35;
             ribbonmain.Name = "ribbonmain";
             ribbonmain.OptionsMenuMinWidth = 366;
             ribbonmain.PageHeaderItemLinks.Add(btnhelp);
@@ -122,8 +123,7 @@
             btnncc.ItemAppearance.Hovered.Options.UseForeColor = true;
             btnncc.ItemAppearance.Normal.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
             btnncc.ItemAppearance.Normal.Options.UseFont = true;
-            btnncc.ItemAppearance.Pressed.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
-            btnncc.ItemAppearance.Pressed.FontStyleDelta = System.Drawing.FontStyle.Bold;
+            btnncc.ItemAppearance.Pressed.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
             btnncc.ItemAppearance.Pressed.Options.UseFont = true;
             btnncc.LargeWidth = 100;
             btnncc.Name = "btnncc";
@@ -187,6 +187,7 @@
             btnbanhang.LargeWidth = 100;
             btnbanhang.Name = "btnbanhang";
             btnbanhang.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            btnbanhang.ItemClick += btnbanhang_ItemClick;
             // 
             // btnbcdt
             // 
@@ -331,6 +332,7 @@
             btnhdsd.ItemAppearance.Pressed.Options.UseFont = true;
             btnhdsd.ItemAppearance.Pressed.Options.UseForeColor = true;
             btnhdsd.Name = "btnhdsd";
+            btnhdsd.ItemClick += btnhdsd_ItemClick;
             // 
             // btnlienhe
             // 
@@ -348,6 +350,7 @@
             btnlienhe.ItemAppearance.Pressed.Options.UseFont = true;
             btnlienhe.ItemAppearance.Pressed.Options.UseForeColor = true;
             btnlienhe.Name = "btnlienhe";
+            btnlienhe.ItemClick += btnlienhe_ItemClick;
             // 
             // btngioithieu
             // 
@@ -365,6 +368,7 @@
             btngioithieu.ItemAppearance.Pressed.Options.UseFont = true;
             btngioithieu.ItemAppearance.Pressed.Options.UseForeColor = true;
             btngioithieu.Name = "btngioithieu";
+            btngioithieu.ItemClick += btngioithieu_ItemClick;
             // 
             // btnimport
             // 
@@ -404,6 +408,25 @@
             barButtonItem1.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             barButtonItem1.ItemClick += barButtonItem1_ItemClick;
             // 
+            // btnreturn
+            // 
+            btnreturn.Caption = "Trả hàng";
+            btnreturn.Id = 34;
+            btnreturn.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("btnreturn.ImageOptions.SvgImage");
+            btnreturn.ImageOptions.SvgImageColorizationMode = DevExpress.Utils.SvgImageColorizationMode.CommonPalette;
+            btnreturn.ItemAppearance.Hovered.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            btnreturn.ItemAppearance.Hovered.ForeColor = System.Drawing.Color.FromArgb(66, 144, 242);
+            btnreturn.ItemAppearance.Hovered.Options.UseFont = true;
+            btnreturn.ItemAppearance.Hovered.Options.UseForeColor = true;
+            btnreturn.ItemAppearance.Normal.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            btnreturn.ItemAppearance.Normal.Options.UseFont = true;
+            btnreturn.ItemAppearance.Pressed.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            btnreturn.ItemAppearance.Pressed.Options.UseFont = true;
+            btnreturn.LargeWidth = 100;
+            btnreturn.Name = "btnreturn";
+            btnreturn.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            btnreturn.ItemClick += btnreturn_ItemClick;
+            // 
             // ribbonnghiepvu
             // 
             ribbonnghiepvu.Appearance.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
@@ -420,6 +443,7 @@
             // 
             grpnghiepvu.ItemLinks.Add(btnnhaphang);
             grpnghiepvu.ItemLinks.Add(btnbanhang);
+            grpnghiepvu.ItemLinks.Add(btnreturn);
             grpnghiepvu.Name = "grpnghiepvu";
             // 
             // ribbonDM
@@ -551,6 +575,7 @@
         private System.Windows.Forms.Panel pnlform;
         private DevExpress.XtraBars.BarButtonItem btnimport;
         private DevExpress.XtraBars.BarButtonItem barButtonItem1;
+        private DevExpress.XtraBars.BarButtonItem btnreturn;
     }
 }
 

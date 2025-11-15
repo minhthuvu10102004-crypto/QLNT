@@ -10,15 +10,23 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
-
+using System.Data.SqlClient;
 namespace QLNhaThuoc
 {
     public partial class nhanvien : DevExpress.XtraEditors.XtraForm
     {
+        SqlConnection conn = new SqlConnection();
+        SqlDataAdapter da = new SqlDataAdapter();
+        SqlCommand cmd = new SqlCommand();
+        DataTable dt = new DataTable();
+        string sql, constr;
+        private bool userHasSelectedRow = false;
+
         public nhanvien()
         {
             InitializeComponent();
             
+
         }
         // Tạo GraphicsPath bo góc
         private GraphicsPath TaoPath(Rectangle rect, int radius)
@@ -101,6 +109,19 @@ namespace QLNhaThuoc
 
         private void nhanvien_Load(object sender, EventArgs e)
         {
+            //gọi dữ liệu
+            constr = "Data Source=MINHTHUVU\\MINHTHU;Initial Catalog=QLBH_NhaThuoc;Integrated Security=True;Encrypt=False";
+            conn.ConnectionString = constr;
+            conn.Open();
+            sql = "SELECT * FROM NhanVien";
+            da = new SqlDataAdapter(sql, conn);
+            da.Fill(dt);
+            gridControlnv.DataSource = dt;
+            gridControlnv.Refresh();
+            this.gridViewnv.MouseUp += GridViewnv_MouseUp;
+
+
+            //
             pnlnv.Controls.Add(flpnv);
             pnlnv.BackColor = Color.White;
             txttimkiem.Properties.AutoHeight = false;
@@ -141,13 +162,14 @@ namespace QLNhaThuoc
             //màu khi nhấn
             btnthem.MouseDown += (s, e) =>
             {
-                btnthem.BackColor = Color.FromArgb(40, 116, 240);
+                btnthem.BackColor = Color.FromArgb(66,144,242);
             };
             btnthem.MouseUp += (s, e) =>
             {
                 btnthem.BackColor = Color.FromArgb(118, 173, 243);
             };
-           
+            
+
             //nút sửa
             btnsua.FlatStyle = FlatStyle.Flat;
             btnsua.FlatAppearance.BorderSize = 0;
@@ -174,7 +196,7 @@ namespace QLNhaThuoc
             {
                 btnsua.BackColor = Color.FromArgb(118, 173, 243);
             };
-           
+
             //nút xóa
             btnxoa.FlatStyle = FlatStyle.Flat;
             btnxoa.FlatAppearance.BorderSize = 0;
@@ -200,9 +222,9 @@ namespace QLNhaThuoc
             {
                 btnxoa.BackColor = Color.FromArgb(118, 173, 243);
             };
-           
+
             //
-            txttimkiem.Properties.NullValuePrompt = "Nhập mã nhà cung cấp và nhấn enter để tìm kiếm";
+            txttimkiem.Properties.NullValuePrompt = "Nhập mã nhân viên và nhấn enter để tìm kiếm";
             txttimkiem.Properties.NullValuePromptShowForEmptyValue = true;
             txttimkiem.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             txttimkiem.BackColor = Color.White;
@@ -222,6 +244,7 @@ namespace QLNhaThuoc
             btnloc.Appearance.ForeColor = Color.Black;
             btnloc.Appearance.Options.UseBackColor = true;
             btnloc.Appearance.Options.UseForeColor = true;
+            btnloc.Margin = new Padding(5, 10, 1300, 0);
             //set hiệu ứng chuột
             //màu khi di chuột
             btnloc.MouseEnter += (s, e) =>
@@ -266,11 +289,39 @@ namespace QLNhaThuoc
             {
                 btnloctheo.Appearance.BackColor = Color.FromArgb(240, 240, 240);
             };
+            //
+            btntailai.AllowFocus = false;
+            btntailai.ImageOptions.SvgImage = Properties.Resources.refresh;
+            btntailai.ImageOptions.SvgImageSize = new Size(12, 12);
+            btntailai.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.None;
+            btntailai.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
+            btntailai.Text = "";
+            //màu khi di chuột
+            btntailai.MouseEnter += (s, e) =>
+            {
+                btntailai.Appearance.BackColor = Color.FromArgb(229, 238, 238);
+            };
+            btntailai.MouseLeave += (s, e) =>
+            {
+                btntailai.Appearance.BackColor = Color.White;
+            };
+            //màu khi nhấn
+            btntailai.MouseDown += (s, e) =>
+            {
+                btntailai.Appearance.BackColor = Color.FromArgb(229, 238, 238);
+            };
+            btntailai.MouseUp += (s, e) =>
+            {
+                btntailai.Appearance.BackColor = Color.FromArgb(240, 240, 240);
+            };
             //bo góc + viền
             BoGocVaVien(btnloc, 12, Color.DarkGray, 1);
             btnloctheo.LookAndFeel.UseDefaultLookAndFeel = false;
             btnloctheo.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             BoGocVaVien(btnloctheo, 12, Color.DarkGray, 1);
+            btntailai.LookAndFeel.UseDefaultLookAndFeel = false;
+            btntailai.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            BoGocVaVien(btntailai, 12, Color.DarkGray, 1);
             //
             //Cấu hình chọn dòng bằng checkbox-- -
             gridViewnv.OptionsSelection.MultiSelect = true;
@@ -290,9 +341,23 @@ namespace QLNhaThuoc
             gridViewnv.Appearance.Row.Font = new Font("Arial", 10);
             gridViewnv.RowHeight = 28;
             gridViewnv.OptionsView.ShowIndicator = false;
+            
             // 
-            BuildPopupContent();
+            gridViewnv.OptionsBehavior.Editable = false;
+            gridViewnv.OptionsBehavior.ReadOnly = true;
+            gridViewnv.OptionsSelection.EnableAppearanceFocusedCell = false;
 
+            gridViewnv.Columns["MaNV"].Caption = "Mã nhân viên";
+            gridViewnv.Columns["TenNV"].Caption = "Tên nhân viên";
+            gridViewnv.Columns["GioiTinh"].Caption = "Giới tính";
+            gridViewnv.Columns["NgaySinh"].Caption = "Ngày sinh";
+            gridViewnv.Columns["SDT"].Caption = "Số điện thoại";
+            gridViewnv.Columns["DiaChi"].Caption = "Địa chỉ";
+           
+            gridViewnv.Appearance.Row.Font = new Font("Arial", 10);
+            gridViewnv.Appearance.HeaderPanel.Font = new Font("Arial", 10, FontStyle.Bold);
+            BuildPopupContent();
+            
         }
         private void BuildPopupContent()
         {
@@ -309,7 +374,7 @@ namespace QLNhaThuoc
             lblTitle.Appearance.Font = new Font("Arial", 12, FontStyle.Bold);
             lblTitle.Width = 250;
             popuploctheo.Controls.Add(lblTitle);
-            // Danh sách tiêu chí lọc của quản lý nhập hàng(có thể chỉnh lại theo phần của bạn)
+            //
             string[] options =
             {
 
@@ -342,10 +407,7 @@ namespace QLNhaThuoc
                     {
                         if (control != chk)
                             control.Checked = false;
-                    }
-
-                    // Gọi hàm lọc theo tiêu chí này
-                    ApplyFilterByCriteria(chk.Text);
+                    }                   
                 };
 
                 popuploctheo.Controls.Add(chk);
@@ -361,18 +423,15 @@ namespace QLNhaThuoc
             };
             popuploctheo.Controls.Add(line);
 
-            // Set kích thước tổng thể popup (vì không có nút nên bớt chiều cao)
+            
             popuploctheo.Size = new Size(270, y + 20);
         }
-        private void ApplyFilterByCriteria(string criteria)
-        {
-
-        }
+        
 
         private void btnloctheo_Click(object sender, EventArgs e)
         {
-            int offsetY = 80; // 👈 chỉnh giá trị này để dịch popup xuống bao nhiêu pixel tùy ý (10–30 là đẹp)
-            int offsetX = 6;  // nếu muốn dịch ngang thì đổi giá trị này
+            int offsetY = 80; 
+            int offsetX = 6;  
 
             pceloctheo.Location = new Point(btnloctheo.Left + offsetX, btnloctheo.Bottom + offsetY);
             pceloctheo.ShowPopup();
@@ -381,18 +440,248 @@ namespace QLNhaThuoc
         private void btnloc_Click(object sender, EventArgs e)
         {
 
+            string keyword = txttimkiem.Text.Trim();
+            List<string> filters = new List<string>();
+
+            foreach (Control control in popuploctheo.Controls)
+            {
+                if (control is CheckEdit chk && chk.Checked)
+                {
+                    switch (chk.Text)
+                    {
+                        case "Mã nhân viên":
+                            filters.Add($"[MaNV] LIKE '%{keyword}%'");
+                            break;
+
+                        case "Tên nhân viên":
+                            filters.Add($"[TenNV] LIKE '%{keyword}%'");
+                            break;
+                        case "Khu vực":
+                            filters.Add($"[DiaChi] LIKE '%{keyword}%'");
+                            break;
+                    }
+                }
+            }
+            // Nếu có ít nhất một tiêu chí được chọn → tạo chuỗi lọc OR
+            if (filters.Count > 0)
+                gridViewnv.ActiveFilterString = string.Join(" OR ", filters);
+            else
+                gridViewnv.ActiveFilterString = string.Empty; // Bỏ lọc nếu không chọn gì
         }
 
         private void btnthem_Click(object sender, EventArgs e)
         {
-            chitietnhanvien chitietnhanvien = new chitietnhanvien();
-            chitietnhanvien.ShowDialog();
+            string connectionString = "Data Source=MINHTHUVU\\MINHTHU;Initial Catalog=QLBH_NhaThuoc;Integrated Security=True;Encrypt=False";
+
+            string maMoi = "";
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                // Lấy mã NCC lớn nhất hiện có
+                string query = "SELECT TOP 1 MaNV FROM NhanVien ORDER BY MaNV DESC";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                object result = cmd.ExecuteScalar();
+
+                if (result == null || result == DBNull.Value)
+                {
+                    maMoi = "NV01";
+                }
+                else
+                {
+                    string maCu = result.ToString(); 
+                    int so = int.Parse(maCu.Substring(3)) + 1; 
+                    maMoi = "NV" + so.ToString("D3"); 
+                }
+            }
+
+            // Gọi form chi tiết và truyền mã mới
+            chitietnhanvien frm = new chitietnhanvien(maMoi);
+            frm.ShowDialog();
+
+
+            // Sau khi đóng form chi tiết thì refresh lại danh sách
+            LoadNhanVienData();
+
         }
 
         private void btnsua_Click(object sender, EventArgs e)
         {
-            chitietnhanvien chitietnhanvien = new chitietnhanvien();
-            chitietnhanvien.ShowDialog();
+            // Kiểm tra xem người dùng đã click chọn dòng chưa
+            if (!userHasSelectedRow)
+            {
+                MessageBox.Show("Vui lòng chọn một nhân viên để sửa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int[] selectedRows = gridViewnv.GetSelectedRows();
+            int rowHandle = -1;
+
+            // Nếu có dòng được tick (checkbox)
+            if (selectedRows != null && selectedRows.Length > 0)
+            {
+                if (selectedRows.Length > 1)
+                {
+                    MessageBox.Show("Chỉ được chọn 1 nhân viên để chỉnh sửa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                rowHandle = selectedRows[0];
+            }
+            else
+            {
+                // Nếu không tick mà chỉ click vào dòng
+                rowHandle = gridViewnv.FocusedRowHandle;
+            }
+
+            if (rowHandle < 0)
+            {
+                MessageBox.Show("Không tìm thấy dòng hợp lệ!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string maNV = gridViewnv.GetRowCellValue(rowHandle, "MaNV")?.ToString();
+            if (string.IsNullOrEmpty(maNV))
+            {
+                MessageBox.Show("Không thể lấy thông tin nhân viên!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Mở form chi tiết
+            chitietnhanvien form = new chitietnhanvien(chitietnhanvien.Mode.ChinhSua, maNV);
+            form.ShowDialog();
+
+            // Reset lại biến khi reload
+            userHasSelectedRow = false;
         }
+
+        private void btnxoa_Click(object sender, EventArgs e)
+        {
+            if (!userHasSelectedRow)
+            {
+                MessageBox.Show("Vui lòng chọn một nhân viên để xóa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int[] selectedRows = gridViewnv.GetSelectedRows();
+            int rowHandle = -1;
+
+            // Nếu tick nhiều dòng
+            if (selectedRows != null && selectedRows.Length > 1)
+            {
+                MessageBox.Show("Chỉ được xóa 1 nhân viên một lần!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (selectedRows != null && selectedRows.Length == 1)
+            {
+                rowHandle = selectedRows[0];
+            }
+            else
+            {
+                rowHandle = gridViewnv.FocusedRowHandle;
+            }
+
+            if (rowHandle < 0)
+            {
+                MessageBox.Show("Không tìm thấy dòng hợp lệ!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string maNV = gridViewnv.GetRowCellValue(rowHandle, "MaNV")?.ToString();
+            if (string.IsNullOrEmpty(maNV))
+            {
+                MessageBox.Show("Không thể lấy thông tin nhân viên!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Xác nhận xóa
+            DialogResult result = MessageBox.Show($"Bạn có chắc chắn muốn xóa nhân viên [{maNV}] không?",
+                                                  "Xác nhận xóa",
+                                                  MessageBoxButtons.YesNo,
+                                                  MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                try
+                {
+                    string connectionString = @"Data Source=MINHTHUVU\MINHTHU;Initial Catalog=QLBH_NhaThuoc;Integrated Security=True;Encrypt=False";
+                    string query = "DELETE FROM NhanVien WHERE MaNV = @MaNV";
+
+                    using (SqlConnection conn = new SqlConnection(connectionString))
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@MaNV", maNV);
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    MessageBox.Show("Xóa nhân viên thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // Reload dữ liệu
+                    LoadNhanVienData();
+                    userHasSelectedRow = false;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi khi xóa nhân viên: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+        private void LoadNhanVienData()
+        {
+            string connectionString = @"Data Source=MINHTHUVU\MINHTHU;Initial Catalog=QLBH_NhaThuoc;Integrated Security=True;Encrypt=False";
+            string query = "SELECT * FROM NhanVien";
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlDataAdapter da = new SqlDataAdapter(query, conn))
+            {
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                gridControlnv.DataSource = dt;
+                
+
+            }
+        }
+
+        private void btntailai_Click(object sender, EventArgs e)
+        {
+            // Xóa điều kiện lọc trong GridView
+            gridViewnv.ActiveFilterString = "";
+            gridViewnv.ClearColumnsFilter();
+
+            // Xóa nội dung trong ô tìm kiếm
+            txttimkiem.Text = string.Empty;
+
+            // Đặt lại gợi ý mặc định (nếu cần)
+            txttimkiem.Properties.NullValuePrompt = "Nhập mã nhân viên và nhấn enter để tìm kiếm";
+            LoadNhanVienData();
+        }
+        private void gridViewnv_RowStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs e)
+        {
+            var view = sender as DevExpress.XtraGrid.Views.Grid.GridView;
+
+            // Nếu dòng này được chọn (tick checkbox)
+            if (view.IsRowSelected(e.RowHandle))
+            {
+                e.Appearance.BackColor = Color.FromArgb(118, 173, 243); 
+                e.Appearance.ForeColor = Color.Black;
+                e.HighPriority = true; 
+            }
+        }
+        private void GridViewnv_MouseUp(object sender, MouseEventArgs e)
+        {
+            var view = sender as DevExpress.XtraGrid.Views.Grid.GridView;
+            if (view == null) return;
+
+            var hit = view.CalcHitInfo(e.Location);
+            if (hit.InRow || hit.InRowCell)
+            {
+                userHasSelectedRow = true; // người dùng đã click chọn dòng
+            }
+        }
+
+
+
+
     }
 }
+
